@@ -1,16 +1,20 @@
 
-
+// 'use server'
 const { createSlice, nanoid } = require("@reduxjs/toolkit")
 
-const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
 const initialState=
 {
-    cart:savedCart}
+    cart:[]}
 
 export const slice=createSlice({
 name:"todo",
 initialState,
-reducers:{
+reducers:{  setCartFromLocalStorage: (state) => {
+      if (typeof window !== "undefined") {
+        const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+        state.cart = savedCart;
+      }
+    },
     addToCart:(state,action)=>{
        const arr=JSON.parse(JSON.stringify(state));
     //    console.log(state);
@@ -93,5 +97,5 @@ removeAll:(state,action)=>{
 
 
 
-export const {addToCart,increment,decrement,remove,removeAll}=slice.actions;
+export const {addToCart,increment,decrement,remove,removeAll,setCartFromLocalStorage}=slice.actions;
 export default slice.reducer

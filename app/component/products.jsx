@@ -1,9 +1,9 @@
 'use client'
 import { Button } from '@/components/ui/button';
 import { ShoppingCart } from 'lucide-react';
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
-import { addToCart } from '../slice/slice';
+import { addToCart, setCartFromLocalStorage } from '../slice/slice';
 import { toast } from 'sonner';
 import { nanoid } from '@reduxjs/toolkit';
 
@@ -11,6 +11,10 @@ export const Products = () => {
 
 const dispatch=useDispatch()
 
+
+  useEffect(() => {
+    dispatch(setCartFromLocalStorage());
+  }, [dispatch]);
 
 
     const products = [
