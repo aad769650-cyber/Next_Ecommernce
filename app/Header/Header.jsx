@@ -13,7 +13,7 @@ const Header = () => {
   return (
     
     <div className=' gap-4 flex justify-around md:justify-evenly items-center shadow p-4 dark:shadow-[0_0_10px_rgba(255,255,255,0.5)]'>
-                  <img src="logo.svg" alt="Logo img" className='w-40 h-10 cursor-pointer' />
+                  <img src="logo (2).svg" alt="Logo img" className='w-40 h-10 cursor-pointer' />
     <ul className=' items-center gap-4 font-semibold hidden md:flex'>
         <li className='text-xl'><Link  href={"/"} className={className}>Home</Link></li>
         <li className='text-xl'><Link href={"/shop"} className={className}>Shop</Link></li>

@@ -1,7 +1,7 @@
 'use client'
 import { Button } from '@/components/ui/button';
 import { ShoppingCart } from 'lucide-react';
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { addToCart, setCartFromLocalStorage } from '../slice/slice';
 import { toast } from 'sonner';
@@ -10,7 +10,6 @@ import { nanoid } from '@reduxjs/toolkit';
 export const Products = () => {
 
 const dispatch=useDispatch()
-
 
   useEffect(() => {
     dispatch(setCartFromLocalStorage());

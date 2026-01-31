@@ -1,96 +1,186 @@
-import React from 'react'
+import React from 'react';
 
-export const Footer = () => {
+export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <>
-   <section className='bg-gray-900 p-4 text-gray-400 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8'>
+    <footer className="bg-zinc-950 text-white relative overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute bottom-0 left-[20%] w-96 h-96 bg-amber-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-0 right-[20%] w-96 h-96 bg-rose-400/5 rounded-full blur-3xl"></div>
+      </div>
 
- <div className='flex flex-col gap-2'>
-       <div className='hover:text-white'>
-        Home
+      {/* Grain Texture */}
+      <div 
+        className="absolute inset-0 opacity-[0.02] pointer-events-none"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
+        }}
+      />
+
+      <div className="relative z-10">
+        {/* Top Border Gradient */}
+        <div className="h-px bg-gradient-to-r from-transparent via-amber-500/50 to-transparent"></div>
+
+        {/* Main Footer Content */}
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
+            
+            {/* Brand Column */}
+            <div className="lg:col-span-4">
+              <div className="mb-6">
+                <h2 className="text-3xl font-serif font-bold bg-gradient-to-br from-white to-gray-400 bg-clip-text text-transparent mb-4">
+                  Elite Circle
+                </h2>
+                <p className="text-gray-400 leading-relaxed font-light">
+                  Curating exceptional experiences for discerning individuals who appreciate the finest in luxury and craftsmanship.
+                </p>
+              </div>
+              
+              {/* Social Links */}
+              <div className="flex gap-4">
+                {[
+                  { name: 'Instagram', icon: 'M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z' },
+                  { name: 'Facebook', icon: 'M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z' },
+                  { name: 'Twitter', icon: 'M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z' },
+                  { name: 'Pinterest', icon: 'M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z' }
+                ].map((social) => (
+                  <a
+                    key={social.name}
+                    href="#"
+                    className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-amber-500 hover:border-amber-500 transition-all duration-300 group"
+                    aria-label={social.name}
+                  >
+                    <svg className="w-5 h-5 text-gray-400 group-hover:text-zinc-950 transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                      <path d={social.icon} />
+                    </svg>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Shop Links */}
+            <div className="lg:col-span-2">
+              <h3 className="text-xs uppercase tracking-[0.2em] text-amber-500 font-semibold mb-6">
+                Shop
+              </h3>
+              <ul className="space-y-4">
+                {['New Arrivals', 'Best Sellers', 'Sale', 'Collections', 'Gift Cards'].map((item) => (
+                  <li key={item}>
+                    <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 font-light">
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* About Links */}
+            <div className="lg:col-span-2">
+              <h3 className="text-xs uppercase tracking-[0.2em] text-amber-500 font-semibold mb-6">
+                About
+              </h3>
+              <ul className="space-y-4">
+                {['Our Story', 'Sustainability', 'Careers', 'Press', 'Partnerships'].map((item) => (
+                  <li key={item}>
+                    <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 font-light">
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Support Links */}
+            <div className="lg:col-span-2">
+              <h3 className="text-xs uppercase tracking-[0.2em] text-amber-500 font-semibold mb-6">
+                Support
+              </h3>
+              <ul className="space-y-4">
+                {['Contact Us', 'FAQ', 'Shipping', 'Returns', 'Size Guide'].map((item) => (
+                  <li key={item}>
+                    <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 font-light">
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Newsletter */}
+            <div className="lg:col-span-2">
+              <h3 className="text-xs uppercase tracking-[0.2em] text-amber-500 font-semibold mb-6">
+                Newsletter
+              </h3>
+              <p className="text-gray-400 text-sm font-light mb-4 leading-relaxed">
+                Subscribe for exclusive offers and insider updates.
+              </p>
+              <form className="space-y-3">
+                <input
+                  type="email"
+                  placeholder="Your email"
+                  className="w-full bg-white/[0.03] border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder-white/30 focus:outline-none focus:border-amber-500 focus:bg-white/[0.05] focus:ring-2 focus:ring-amber-500/20 transition-all duration-300"
+                />
+                <button
+                  type="submit"
+                  className="w-full bg-white/5 border border-white/10 text-white text-xs uppercase tracking-wider font-semibold py-3 rounded-lg hover:bg-amber-500 hover:border-amber-500 hover:text-zinc-950 transition-all duration-300"
+                >
+                  Subscribe
+                </button>
+              </form>
+            </div>
           </div>
-    <div className='hover:text-white'>
-        About Us
+
+          {/* Divider */}
+          <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-8"></div>
+
+          {/* Bottom Section */}
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="flex flex-wrap justify-center md:justify-start gap-6 text-sm">
+              {['Privacy Policy', 'Terms of Service', 'Cookie Policy', 'Accessibility'].map((item, index) => (
+                <React.Fragment key={item}>
+                  <a href="#" className="text-gray-500 hover:text-amber-500 transition-colors duration-300">
+                    {item}
+                  </a>
+                  {index < 3 && <span className="text-gray-700">•</span>}
+                </React.Fragment>
+              ))}
+            </div>
+            
+            <div className="text-sm text-gray-500">
+              © {currentYear} Elite Circle. All rights reserved.
+            </div>
           </div>
-    <div className='hover:text-white'>
-        Services
+
+          {/* Payment Methods */}
+          <div className="flex justify-center items-center gap-4 mt-8 pt-8 border-t border-white/5">
+            <span className="text-xs text-gray-600 uppercase tracking-wider">Accepted Payments</span>
+            <div className="flex gap-3">
+              {['Visa', 'Mastercard', 'Amex', 'PayPal', 'Apple Pay'].map((payment) => (
+                <div
+                  key={payment}
+                  className="w-12 h-8 bg-white/5 border border-white/10 rounded flex items-center justify-center"
+                >
+                  <span className="text-[8px] text-gray-500 font-semibold">{payment}</span>
+                </div>
+              ))}
+            </div>
           </div>
-    <div className='hover:text-white'>
+        </div>
+      </div>
+
+      <style jsx>{`
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Work+Sans:wght@300;400;500;600&display=swap');
         
-Patient Tools
-  
-          </div>
- </div>
-
-
-<div  className='flex flex-col gap-2'>
-    <div className='hover:text-white cursor-pointer'>
-        Testimonials
-
-    </div>
-    <div className='hover:text-white cursor-pointer'>
-
-FAQ's
-
-    </div>
-    <div className='hover:text-white cursor-pointer'>
-       
-Contact Us
-    </div>
-</div>
-
-
-
-<div  className='flex flex-col gap-2'>
-<div className='font-semibold text-emerald-400'>
-
-
-   CareBridge Primary Care, PLLC
-
-</div>
-<div className='text-white'>
-
-
- 
-115 Parkway Office Ct, suite 104, Cary NC, 27518
-
-</div>
-<div className='text-white'>
-
-
-Phone: <span className='text-emerald-400'>919 230 7439</span>
-
-</div>
-<div className='text-white'>
-
-
-  
-Fax:<span className='text-emerald-400'> 1 919 912 5442</span>
-
-</div>
-<div className='text-white'>
-
-
-
-Email: <a href='mailto:aad769650@gmail.com' className='text-emerald-400'>aad769650@gmail.com</a>
-</div>
-
-</div>
-
-
-
-
-
-   </section>
-   <hr className='text-gray-300'/>
-<div className='flex justify-between items-center p-4 bg-gray-900  text-gray-400'>
-<div className='flex gap-2 items-center'>
-        <div className='w-8 h-8 shrink-0 flex items-center justify-center text-gray-950 font-bold bg-emerald-400 rounded-full'>CP</div>
-    <div>CareBridge</div>
-</div>
-
-<div>Made with love on Earth By <a href="https://github.com/aad769650-cyber" className='text-emerald-400 hover:underline'>Mahar</a></div>
-</div>
-</>
-  )
+        * {
+          font-family: 'Work Sans', sans-serif;
+        }
+        
+        h2, h3 {
+          font-family: 'Playfair Display', serif;
+        }
+      `}</style>
+    </footer>
+  );
 }

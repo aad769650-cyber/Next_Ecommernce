@@ -7,7 +7,7 @@ import ThemeProvider from "@/components/ui/theme-provider";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import { Toaster } from "sonner";
-import { Footer } from "./component/Footer";
+import  Footer  from "./component/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
