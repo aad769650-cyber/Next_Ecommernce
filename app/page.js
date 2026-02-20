@@ -1,7 +1,7 @@
 import React from 'react'
 import HeroSection from './component/HeroSection'
-import { Products } from './component/products'
 import FAQ from './component/faq'
+import { Products } from './component/products'
 
 const page = () => {
   return (

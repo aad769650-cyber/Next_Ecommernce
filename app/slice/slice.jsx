@@ -1,101 +1,54 @@
+import { createSlice } from "@reduxjs/toolkit";
 
-// 'use server'
-const { createSlice, nanoid } = require("@reduxjs/toolkit")
+const initialState = {
+  cart: [],
+  isLoaded: false, // Flag to prevent saving empty cart before loading
+};
 
-const initialState=
-{
-    cart:[]}
+export const slice = createSlice({
+  name: "todo",
+  initialState,
+  reducers: {
+    // 1. Sync from LocalStorage (Triggered only in useEffect)
+    setCartFromLocalStorage: (state, action) => {
+      state.cart = action.payload;
+      state.isLoaded = true;
+    },
 
-export const slice=createSlice({
-name:"todo",
-initialState,
-reducers:{  setCartFromLocalStorage: (state) => {
-      if (typeof window !== "undefined") {
-        const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
-        state.cart = savedCart;
+    // 2. Add to Cart logic
+    addToCart: (state, action) => {
+      const existingItem = state.cart.find((item) => item.id === action.payload.id);
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        state.cart.push({ ...action.payload, quantity: 1 });
       }
     },
-    addToCart:(state,action)=>{
-       const arr=JSON.parse(JSON.stringify(state));
-    //    console.log(state);
-       
-   const find=state.cart.find((curr)=>{
-    // console.log(curr.id,action.payload.id);
-    
-    return curr.id==action.payload.id
-   })
-console.log(find);
 
-if(!find){
-      const cart=   {
-            id:action.payload.id,
-            url:action.payload.url,
-            name:action.payload.name,
-            price:action.payload.price,
-            quantity:action.payload.quantity
-        
-
-     }
-
-     
-     
-
-        state.cart.push(cart);
-        localStorage.setItem('cart',JSON.stringify(state.cart))
-}else{
-    find.quantity+=1;
-
-       localStorage.setItem('cart',JSON.stringify(state.cart))
-}
-
+    increment: (state, action) => {
+      const item = state.cart.find((i) => i.id === action.payload);
+      if (item) item.quantity += 1;
     },
 
-increment:(state,action)=>{
-const find=state.cart.find((curr)=>{
-    return curr.id==action.payload
-})
-    
-if(find){
+    decrement: (state, action) => {
+      const item = state.cart.find((i) => i.id === action.payload);
+      if (item && item.quantity > 1) {
+        item.quantity -= 1;
+      }
+    },
 
-   find.quantity+=1 
-}
+    remove: (state, action) => {
+      state.cart = state.cart.filter((item) => item.id !== action.payload);
+    },
 
+    removeAll: (state) => {
+      state.cart = [];
+    }
+  }
+});
 
-},
+export const { 
+  addToCart, increment, decrement, remove, removeAll, setCartFromLocalStorage 
+} = slice.actions;
 
-
-decrement:(state,action)=>{
-    const find=state.cart.find((curr)=>{
-    return curr.id==action.payload
-})
-
-if(find){
-    find.quantity>0?find.quantity-=1:0
-}
-
-},
-
-remove:(state,action)=>{
-    const filter=state.cart.filter((curr)=>{
-        return curr.id!==action.payload
-    })
-// console.log(JSON.parse(JSON.stringify(filter)));
-state.cart=filter
-   localStorage.setItem("cart",JSON.stringify(filter))
-}
-,
-
-removeAll:(state,action)=>{
-    state.cart=[],
-    localStorage.removeItem("cart")
-}
-}
-})
-
-
-
-
-
-
-export const {addToCart,increment,decrement,remove,removeAll,setCartFromLocalStorage}=slice.actions;
-export default slice.reducer
+export default slice.reducer;
